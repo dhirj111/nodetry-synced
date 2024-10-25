@@ -22,3 +22,7 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 app.listen(7000);
+
+
+// "this repo is update version of nodetry repo of same 
+// user to sync project with trainer  , here html view files are changed to ejs  files "
