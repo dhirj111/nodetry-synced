@@ -10,6 +10,17 @@ exports.getProducts = (req, res, next) => {
   });
 };
 
+exports.getProduct = (req, res, next) => {
+
+  //we import product id of route address by using params syntax
+  const prodId = req.params.productId;
+  Product.findById(prodId, (product) => {
+    //here we get raw object of productid, object
+    res.render('shop/product-detail', { product: product, pageTitle: product.title ,path:'/products' })
+    //passsed path also that so that navigation .ejs file's active section can work
+    //we passed our product object as key to render in views
+  })
+}
 exports.getIndex = (req, res, next) => {
   Product.fetchAll(products => {
     res.render('shop/index', {

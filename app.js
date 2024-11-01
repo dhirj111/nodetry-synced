@@ -21,7 +21,7 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-app.listen(7000);
+app.listen(4000);
 
 
 // "this repo is update version of nodetry repo of same 

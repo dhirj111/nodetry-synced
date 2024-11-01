@@ -16,6 +16,7 @@ const getProductsFromFile = cb => {
     }
   });
 };
+//this returns parsed data of  products 
 
 module.exports = class Product {
   constructor(title, imageUrl, description, price) {
@@ -26,6 +27,8 @@ module.exports = class Product {
   }
 
   save() {
+    this.id = Math.random().toString();
+    //generated a unique id for each product and then saved it below in json array
     getProductsFromFile(products => {
       products.push(this);
       fs.writeFile(p, JSON.stringify(products), err => {
@@ -34,7 +37,31 @@ module.exports = class Product {
     });
   }
 
+
+  // products => {
+  //   res.render('admin/products', {
+  //     prods: products,
+  //     pageTitle: 'Admin Products',
+  //     path: '/admin/products'
+  //   });
+  // }
+  //we pasing a function like that as a callback below
   static fetchAll(cb) {
     getProductsFromFile(cb);
+  }
+
+  static findById(id, cb) {
+    //here by getProductsFromFile method we get all product details in parsed format  ,we just filter 
+    //id of our url provided product
+    //after getting id matched product we will pass it to callback so that we can perform operations on details
+    //of that id's product
+    getProductsFromFile(products => {
+      const product = products.find(p => p.id === id);
+      //stored object of id's matched product and passed it to callback
+      cb(product)
+      //understand callback in Product.findById of dynamic router in controllers 
+    })
+
+
   }
 };

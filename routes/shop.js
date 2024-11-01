@@ -10,6 +10,14 @@ router.get('/', shopController.getIndex);
 
 router.get('/products', shopController.getProducts);
 
+
+router.get('/products/:productId', shopController.getProduct);
+
+//we will get diffrent values of productid and we used a diffrent route handler in
+//controller file to get details of a specific page
+//remember we are trying to pass  this :productId to controller's function ,
+
+
 router.get('/cart', shopController.getCart);
 
 router.get('/orders', shopController.getOrders);
