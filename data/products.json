@@ -2,17 +2,18 @@
   {
     "id": "989280",
     "title": "magic pencil ",
-    "imageUrl": "https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/b2f25900-3545-4ead-b337-e85f195d189b/c98ba646-c284-4f32-8596-3c33829b0eba.png",
+    "imageUrl": "https://i.ibb.co/nBpzYFF/Pandas-Magic-Pencil-cover-photo-min.jpg",
     "description": "2030 magic pencil z88",
     "price": "19"
   },
-  { "id": "80280280",
+  {
+    "id": "80280280",
     "title": "TIME MACHINE",
     "imageUrl": "https://images.pexels.com/photos/13717486/pexels-photo-13717486.jpeg",
     "description": "TIME MACHINE LITE MODEL",
     "price": "40"
   },
-  { 
+  {
     "id": "978785",
     "title": "vision box",
     "imageUrl": "https://images.pexels.com/photos/3405456/pexels-photo-3405456.jpeg",
@@ -20,10 +21,10 @@
     "price": "5"
   },
   {
-     "id": "0598880",
-    "title": "BUDS PRO",
-    "imageUrl": "https://images.pexels.com/photos/29128040/pexels-photo-29128040/free-photo-of-high-quality-black-earphones-on-white-background.jpeg",
-    "description": "13 MM DRIVER ,STEREO",
-    "price": "6"
+    "title": "humanoid robot",
+    "imageUrl": "https://images.pexels.com/photos/8294658/pexels-photo-8294658.jpeg",
+    "description": "PEROSNLISED CUSTOM ROBOT LIKE NARENDRA MODI",
+    "price": "500",
+    "id": "0.10427553364041398"
   }
 ]
