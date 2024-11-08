@@ -1,12 +1,5 @@
 [
   {
-    "id": "989280",
-    "title": "magic pencil ",
-    "imageUrl": "https://i.ibb.co/nBpzYFF/Pandas-Magic-Pencil-cover-photo-min.jpg",
-    "description": "2030 magic pencil z88",
-    "price": "19"
-  },
-  {
     "id": "80280280",
     "title": "TIME MACHINE",
     "imageUrl": "https://images.pexels.com/photos/13717486/pexels-photo-13717486.jpeg",
@@ -19,12 +12,5 @@
     "imageUrl": "https://images.pexels.com/photos/3405456/pexels-photo-3405456.jpeg",
     "description": "HI-DAC vision box",
     "price": "5"
-  },
-  {
-    "title": "humanoid robot",
-    "imageUrl": "https://images.pexels.com/photos/8294658/pexels-photo-8294658.jpeg",
-    "description": "PEROSNLISED CUSTOM ROBOT LIKE NARENDRA MODI",
-    "price": "500",
-    "id": "0.10427553364041398"
   }
 ]

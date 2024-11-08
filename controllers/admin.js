@@ -1,9 +1,12 @@
 const Product = require('../models/product');
+const router = require('../routes/admin');
+const { route } = require('../routes/admin');
 
 exports.getAddProduct = (req, res, next) => {
-  res.render('admin/add-product', {
+  res.render('admin/edit-product', {
     pageTitle: 'Add Product',
     path: '/admin/add-product',
+    editing: false,
     formsCSS: true,
     productCSS: true,
     activeAddProduct: true
@@ -19,6 +22,47 @@ exports.postAddProduct = (req, res, next) => {
   product.save();
   res.redirect('/');
 };
+
+exports.getEditProduct = (req, res, next) => {
+  const editMode = req.query.edit;
+  //it will be setted as we get by query of url
+  if (!editMode) {
+    return res.redirect('/')
+  }
+  const prodId = req.params.productId;
+  //used class static method to get whole id's object
+  Product.findById(prodId, product => {
+
+    if (!product) {
+      return res.redirect('/')
+    }
+
+    res.render('admin/edit-product', {
+      pageTitle: 'Edit Product',
+      path: '/admin/edit-product',
+      //done a special property so that we can do front accordingly in ejs  as true
+      editing: editMode,
+      product: product
+      // formsCSS: true,
+      // productCSS: true,
+      // activeAddProduct: true
+    });
+
+  });
+
+}
+
+exports.postdeleteproduct = (req, res, next) => {
+
+  const prodId = req.params.productId;
+  console.log(prodId)
+Product.deletebyid(prodId)
+res.redirect('/admin/products')
+
+  
+}
+
+
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll(products => {

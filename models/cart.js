@@ -46,4 +46,16 @@ module.exports = class Cart {
       });
     });
   }
+
+  //after this all are today changes 💊🩹
+  
+  static getProductsFromFile = cb => {
+    fs.readFile(p, (err, fileContent) => {
+      if (err) {
+        cb([]);
+      } else {
+        cb(JSON.parse(fileContent));
+      }
+    });
+  };
 };

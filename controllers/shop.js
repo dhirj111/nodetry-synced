@@ -32,6 +32,18 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
+
+
+  Cart.getProductsFromFile((products) => {
+    console.log("these are products fetched from cart added by user file", products)
+    console.log("fetching completed ")
+    // res1.sendFile(path1.join(rootDirectory, "views", "shop.html"));
+  })
+
+
+
+
+
   res.render('shop/cart', {
     path: '/cart',
     pageTitle: 'Your Cart'

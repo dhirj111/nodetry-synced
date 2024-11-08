@@ -37,7 +37,6 @@ module.exports = class Product {
     });
   }
 
-
   // products => {
   //   res.render('admin/products', {
   //     prods: products,
@@ -48,6 +47,23 @@ module.exports = class Product {
   //we pasing a function like that as a callback below
   static fetchAll(cb) {
     getProductsFromFile(cb);
+  }
+
+  //custom function to delete by id  for items[]
+  static deletebyid(prodId) {
+    fs.readFile(p, (err, fileContent) => {
+      let prodasarray = JSON.parse(fileContent)
+      const productIndex = prodasarray.findIndex(product => product.id == prodId);
+      prodasarray.splice(productIndex, 1);
+      fs.writeFile(p, JSON.stringify(prodasarray), err => {
+        console.log(err);
+      });
+
+    })
+    //id will be passed  just remove that specific product by using id from json
+
+
+
   }
 
   static findById(id, cb) {
@@ -61,7 +77,5 @@ module.exports = class Product {
       cb(product)
       //understand callback in Product.findById of dynamic router in controllers 
     })
-
-
   }
 };

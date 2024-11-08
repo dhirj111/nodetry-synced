@@ -10,7 +10,6 @@ router.get('/', shopController.getIndex);
 
 router.get('/products', shopController.getProducts);
 
-
 router.get('/products/:productId', shopController.getProduct);
 
 //we will get diffrent values of productid and we used a diffrent route handler in
