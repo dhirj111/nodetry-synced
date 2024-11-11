@@ -1,7 +1,7 @@
 //removed file and path as we are not working with them anymore
 //also removed all inner method code of performing operation on files
 
-const db =require('../util/database');
+const db = require('../util/database');
 module.exports = class Product {
   constructor(title, imageUrl, description, price) {
     this.title = title;
@@ -11,7 +11,9 @@ module.exports = class Product {
   }
 
   save() {
-
+    return db.execute('INSERT INTO products (title ,price , imageUrl ,description)VALUES (?,?,?,?)',
+    [this.title, this.price, this.imageUrl, this.description]);
+//used (?,?,?,?) so that sql can auto deny sql injcetions where attackers inject sql commands instead of values
 
   }
 
