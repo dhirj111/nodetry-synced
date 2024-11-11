@@ -21,11 +21,15 @@ exports.getProduct = (req, res, next) => {
 
   //we import product id of route address by using params syntax
   const prodId = req.params.productId;
-  Product.findById(prodId, (product) => {
-    //here we get raw object of productid, object
-    res.render('shop/product-detail', { product: product, pageTitle: product.title, path: '/products' })
-    //passsed path also that so that navigation .ejs file's active section can work
-    //we passed our product object as key to render in views
+  Product.findById(prodId).then(([product]) => {
+    res.render('shop/product-detail', {
+      product: product[0],
+      //here we used product 0 because product is as array[{k,v}] but we need { k,v}
+      pageTitle: product.title,
+      path: '/products'
+    });
+  }).catch(err => {
+    console.log(err)
   })
 }
 exports.getIndex = (req, res, next) => {
