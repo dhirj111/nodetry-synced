@@ -33,7 +33,7 @@ module.exports = class Product {
 
   //custom function to delete by id  for items[]
   static deletebyid(prodId) {
-
+    return  db.execute('DELETE  FROM products WHERE products.id=?' ,[prodId]);
 
   }
 
