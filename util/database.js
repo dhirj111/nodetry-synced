@@ -5,7 +5,8 @@ const pool = mysql.createPool({
   host:'localhost',
   user:'root',
   database:'node-complete',
-  password:'1@Passworrd'
+  password:'1@Password'
 })
 
 module.exports = pool.promise();
+//remember here module is in form of promise ,so we will implement .then .catch blocks

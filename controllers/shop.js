@@ -22,13 +22,17 @@ exports.getProduct = (req, res, next) => {
   })
 }
 exports.getIndex = (req, res, next) => {
-  Product.fetchAll(products => {
+  //used that promise's to render values to ejs below;
+  Product.fetchAll().then(([rows, fieldData]) => {
     res.render('shop/index', {
-      prods: products,
+      prods: rows,
       pageTitle: 'Shop',
       path: '/'
     });
-  });
+  }).catch((err) => {
+    console.log(error)
+  })
+
 };
 
 exports.getCart = (req, res, next) => {
@@ -39,9 +43,6 @@ exports.getCart = (req, res, next) => {
     console.log("fetching completed ")
     // res1.sendFile(path1.join(rootDirectory, "views", "shop.html"));
   })
-
-
-
 
 
   res.render('shop/cart', {
