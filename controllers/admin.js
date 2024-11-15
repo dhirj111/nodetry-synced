@@ -57,13 +57,10 @@ exports.getEditProduct = (req, res, next) => {
 }
 
 exports.postdeleteproduct = (req, res, next) => {
-
   const prodId = req.params.productId;
   console.log(prodId)
   Product.deletebyid(prodId)
   res.redirect('/admin/products')
-
-
 }
 
 
