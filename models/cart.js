@@ -7,28 +7,19 @@ const p = path.join(
   'cart.json'
 );
 
-
-//{"products":[{"id":"989280","qty":2},{"id":"80280280","qty":1}],"totalPrice":78} we want to store 
-//something like this in json format by below class
 module.exports = class Cart {
   static addProduct(id, productPrice) {
     // Fetch the previous cart
     fs.readFile(p, (err, fileContent) => {
       let cart = { products: [], totalPrice: 0 };
-      //we created //this json text { products: [], totalPrice: 0 }
-      //we will  perform all operations on this object and will stringify and store it as json file
       if (!err) {
         cart = JSON.parse(fileContent);
-        //if there is a cart means !err , then we stored all values in parsed format
       }
       // Analyze the cart => Find existing product
       const existingProductIndex = cart.products.findIndex(
         prod => prod.id === id
-        //here we seen that inside parsed cart , is tapped product already present and 
-        //stored its location 
       );
       const existingProduct = cart.products[existingProductIndex];
-      //here we stored product id and price by  index
       let updatedProduct;
       // Add new product/ increase quantity
       if (existingProduct) {
@@ -47,15 +38,37 @@ module.exports = class Cart {
     });
   }
 
-  //after this all are today changes 💊🩹
-  
-  static getProductsFromFile = cb => {
+  static deleteProduct(id, productPrice) {
     fs.readFile(p, (err, fileContent) => {
       if (err) {
-        cb([]);
+        return;
+      }
+      const updatedCart = { ...JSON.parse(fileContent) };
+      const product = updatedCart.products.find(prod => prod.id === id);
+      if (!product) {
+          return;
+      }
+      const productQty = product.qty;
+      updatedCart.products = updatedCart.products.filter(
+        prod => prod.id !== id
+      );
+      updatedCart.totalPrice =
+        updatedCart.totalPrice - productPrice * productQty;
+
+      fs.writeFile(p, JSON.stringify(updatedCart), err => {
+        console.log(err);
+      });
+    });
+  }
+
+  static getCart(cb) {
+    fs.readFile(p, (err, fileContent) => {
+      const cart = JSON.parse(fileContent);
+      if (err) {
+        cb(null);
       } else {
-        cb(JSON.parse(fileContent));
+        cb(cart);
       }
     });
-  };
+  }
 };

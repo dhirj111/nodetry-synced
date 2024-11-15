@@ -15,7 +15,6 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(errorController.get404);
 sequelize.sync().then(result => {
-  console.log(result);
   app.listen(4000);
 })
   .catch(err => {
