@@ -21,6 +21,5 @@ sequelize.sync().then(result => {
     console.log(err);
   });
 
-
 // "this repo is update version of nodetry repo of same 
 // user to sync project with trainer  , here html view files are changed to ejs  files "
