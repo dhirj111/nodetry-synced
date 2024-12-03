@@ -16,7 +16,6 @@ router.get('/products/:productId', shopController.getProduct);
 //controller file to get details of a specific page
 //remember we are trying to pass  this :productId to controller's function ,
 
-
 router.get('/cart', shopController.getCart);
 
 router.post('/cart', shopController.postCart);
