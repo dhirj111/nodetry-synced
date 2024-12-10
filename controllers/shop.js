@@ -93,13 +93,14 @@ exports.getCart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
+  let newQuantity = 1;
   let fetchedCart;
   //declared it here so that we can use that cart in all then block once stored
   //we got access to cart from here same way in get controller above
   req.user.getCart()
     .then(cart => {
       fetchedCart = cart;
-      console.log("index 102 fecthedCart" , fetchedCart)
+      console.log("index 102 fecthedCart", fetchedCart)
       //now fetched can be used in all blocks
       return cart.getProducts({ where: { id: prodId } });
       //this returns  clciked product row containg all product from products of mysql
@@ -109,23 +110,28 @@ exports.postCart = (req, res, next) => {
       //then quanitiy +1
     )
     .then(products => {
-      console.log("index 111 products" ,products)
+      console.log("index 111 products", products)
       let product;
       if (products.length > 0) {
         product = products[0];
       }
-      let newQuantity = 1;
       if (product) {
-        Cart.findByPk()
-        // if product is already there then we will increase newQuantity
+        const oldQuantity = product.cartItem.quantity
+        newQuantity = oldQuantity + 1;
+        console.log("index 122 quans", newQuantity)
+        return product;
+        //product here will be wrapped by promises
       }
-      return Product.findByPk(prodId).then(product => {
-        console.log("index 122 product to added" ,product)
-        return fetchedCart.addProduct(product, { through: { quantity: newQuantity } })
-        //.add product is magic syntax of sequelize  
-        //this will populate cart-item table with product id  and cartid and quantity
-      })
-    }).then(() => {
+
+      return product.findByPk(prodId)
+    })
+    .then(product => {
+      //   console.log("index 122 product to added" ,product)
+      return fetchedCart.addProduct(product, { through: { quantity: newQuantity } })
+      //.add product is magic syntax of sequelize  
+      //this will populate cart-item table with product id  and cartid and quantity
+    })
+    .then(() => {
       res.redirect('/cart')
     })
     .catch(err => console.log(err))
